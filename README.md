@@ -1,31 +1,79 @@
-# trail-counters
+# TallyTrek
 
-Sooner or later, anyone involved in building hiking or mountain biking trails on public lands is faced with questions about their user community. Whether to justify more trails, improvement in existing trails, apply for grants or funding, understand usage patterns, or just bragging rights, everyone likes objective metrics. How many people are using their trails. When are they using it - are there peak times? Are there favorite loops that see a lot more use than other routes? You built it; did they come? 
+TallyTrek is a low-cost trail counter. It detects each trail user with a microwave sensor and records the event, with a timestamp, in a .csv file
+on a microSD card that you can collect and open in any spreadsheet. A small built-in display shows the current counts, battery level, and sensor
+status, so you can check a counter in the field without a laptop.
 
-Really good commercial trail counter systems are available from several companies. These packages are rugged, tested, and well supported but all that comes with a price. A recent survey found sensor prices ranging from $130 to $995 each, most designed as part of an overall system requiring the purchase of proprietary  hardware and ongoing software subscriptions for data collection and analysis from these sensors. If you've got the budget for this, there are several solid choices in that market. Go for it - read no further.
+TallyTrek is by Aiden Cherniske. It's based on NiftyCounter from Loren Konkus's
+[trail-counters](https://github.com/LorenKonkus/trail-counters) project, and fixes counting, data loss, and power problems found in the original.
 
-For the nonprofit trail advocacy groups I work with, an investment of a few thousand dollars to get started has always felt like a lot of money for just data. Stripped to its core, this is a simple task: detecting the presence of a user and recording that event in a time stamped log file. You don't need specialized analysis software. Standard spreadsheet programs are really good at crunching dates and times and making pretty graphs. Once you have event information you can import it and cut and slice it anyway that you'd like for presentation. You do need sensors and data collection hardware, but all the basic building blocks are readily available off the shelf and inexpensive, and that means you can use them in more places. You need to be very careful siting and securing a $500 sensor asset, but you can be a lot more casual about placing a $40 counter. 
+![NiftyCounter assembled](/assets/images/NiftyCounter.jpg)
 
-That's the theme of this repository: removing the cost barriers by sharing ideas, hardware references, and code to make it easy to create low-cost trail counters for anyone who's interested in trail advocacy.
+## Why
 
-## Roadmap
+Trail builders and advocacy groups get asked how many people use their trails, and when. Commercial trail counters answer that well, but they cost
+hundreds of dollars per sensor and often need proprietary hardware and software subscriptions. Counting trail users is a simple job: notice someone
+passing and write down the time. Off-the-shelf boards can do that for much less, and a cheap counter can go in more places with less worry about
+losing it.
 
-The following overview documents might be useful:
+## Hardware
 
-- SensorOverview.md - an overview of the types of sensors commonly in use
-- PackagingOptions.md - an overview of the ways I've packaged up hardware for field deployments
-- HelpfulReferences.md - pointers to docs, videos, and commercial trail counter systems
+- [Adafruit ESP32-S2 Reverse TFT Feather](https://www.adafruit.com/product/5345) (the -S3 version works too): the processor, display, three
+  buttons, LiPo charger, and battery monitor
+- [Adafruit Adalogger FeatherWing](https://www.adafruit.com/product/2922): the microSD card slot and a battery-backed real-time clock
+- RCWL-0516 microwave sensor
+- A LiPo battery and a FAT-formatted microSD card
+- Optional: the 3D printed NiftyCase enclosure (see [Packaging Options](PackagingOptions.md))
 
-Along this path, I've built several trail counters to test new ideas and refine the technology. These are:
+Wire the sensor to the Feather:
 
-- UnoCounter - an Arduino UNO based trail counter that records trail usaage event data on an SD card.
-- ThriftyCounter - a minimal Adafruit M0 Adalogger feather based counter that records trail usage data on a microSD card. The primary goal was low power usage to minimize battery cost and size for extended unattended operation.
-- NiftyCounter - a ThriftyCounter with a user interface based on the Adafruit ESP32-S2 Reverse TFT Feather. 
-- NiftyCounterSTHS34PF80 - a NiftyCounter variant designed for an I2C based sensor. 
+| RCWL-0516 | Feather |
+|-----------|---------|
+| VIN       | BAT (or 3V) |
+| GND       | GND |
+| OUT       | 12 |
+| 3V3, CDS  | not connected |
 
-In addition to these trail counters, there's a small app that harvests trail usage information from Strava each day. Sometimes it's interesting to compare this information to actual counts, and it can be useful to gather information for more trail segments where it's impractical to host actual trail counters. Strava only tracks a small percentage of actual trail use, and so some sort of statistical local multiplier should be applied to get closer to true trail usage. 
+The sensor's output pin has to be an RTC-capable GPIO (0 through 21) so it can wake the board from deep sleep. Keep the sensor a couple of inches from
+the boards and battery, with its component side facing the trail. See [Sensor Overview](SensorOverview.md) for more on sensors.
 
-- HarvestStrava - harvest segment usage data from Strava. 
+## Installing the firmware
 
+1. Install the Arduino IDE and add the "esp32 by Espressif Systems" board package.
+2. Install the Adafruit ST7735 and ST7789, Adafruit GFX, Adafruit MAX1704X, and RTClib libraries.
+3. Open the `TallyTrek` folder, select the "Adafruit Feather ESP32-S2 Reverse TFT" board, and upload.
 
+Or, with arduino-cli:
 
+```
+arduino-cli compile --fqbn esp32:esp32:adafruit_feather_esp32s2_reversetft TallyTrek
+arduino-cli upload --fqbn esp32:esp32:adafruit_feather_esp32s2_reversetft -p <port> TallyTrek
+```
+
+The board's USB port disappears while it's in deep sleep. Press D1 or D2 to wake it before uploading.
+
+## Using TallyTrek
+
+After startup the dashboard shows the time, battery level, sensor status, and counts for the hour, the day, and since startup. The sensor status
+reads "Ready", "Sensor Active" in yellow while the sensor is detecting, or "Downtime" with a red countdown while the counter waits for the sensor to
+stay quiet for 10 seconds. Detections less than 10 seconds apart count as one event.
+
+The display turns off after 4 minutes and the board goes into deep sleep. D1 or D2 turns the display back on. Trail users are counted with the
+display off. Press D1 for the menu, where you can turn the sensor off, eject the SD card, reset the counts, or set the clock.
+
+Each day's events go in a file named `CYYMMDD.csv` with the event time, duration, and running counts for the hour, the day, and since startup. To
+collect data, choose "Eject SD Card", swap in a fresh card, and press reset.
+
+The full guide is in [TallyTrek/TallyTrek.md](TallyTrek/TallyTrek.md).
+
+## Repository
+
+- `TallyTrek/` - the firmware (`TallyTrek.ino`) and the full guide
+- `NiftyCase*.stl` - the 3D printed enclosure
+- [SensorOverview.md](SensorOverview.md) - the kinds of sensors used for trail counting
+- [PackagingOptions.md](PackagingOptions.md) - enclosures and mounting
+- [HelpfulReferences.md](HelpfulReferences.md) - trail counting guides, videos, and commercial systems
+
+## License
+
+MIT. TallyTrek is copyright 2026 Aiden Cherniske, and NiftyCounter, which it's based on, is copyright 2023 Loren Konkus. See [LICENSE](LICENSE).

@@ -1,5 +1,7 @@
 # Sensor Types
 
+This overview comes from Loren Konkus's original trail-counters project. TallyTrek uses the RCWL-0516 microwave sensor described below.
+
 Sensor type and placement are the keys to accurate and correct counting of trail users. Commonly used sensors
 are:
 - Infrared
@@ -113,7 +115,7 @@ You can replace C2 (in red) with a smaller capacitor for a narrower trigger puls
 ### The HFS-DC06F sensor
 
 This is a really nice, stable sensor package with easily adjustable range and trigger time settings. The output signal can be used directly as an 
-input to an Arduino Uno counter. The only downside to this package is that it's a bit of a power pig, requiring 30ma at 5 volts in operation. Given 
+input to a trail counter. The only downside to this package is that it's a bit of a power pig, requiring 30ma at 5 volts in operation. Given 
 that, it does work well as a detection sensor if you turn down the range and trigger time settings to their minimal values. This will result in a workable range of about 6 feet and about 2 seconds of high signal for each detection event. This is fine for hikers and relatively slow low volume bike traffic where users are 4 seconds apart, but may undercount if they are closer together than that.
 
 ![sensor](/assets/images/HFS-DC06F.jpg)
