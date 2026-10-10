@@ -30,7 +30,7 @@ about 11 ma the entire duration that a user is present. It's not a lot, but it a
 As it turns out, for only an additional $10 or so you can add a very nice user interface to this design, and a user interface can address each of these
 shortcomings. Hence, the NiftyCounter was created.
 
-![NiftyCounter assembled](/assets/images/NiftyCounter.jpg)
+![NiftyCounter assembled](../assets/images/NiftyCounter.jpg)
 
 ## Hardware Platform
 
@@ -49,7 +49,7 @@ battery pack to top off an internal LiPo battery. Or just swap the LiPo battery 
 In addition to the ESP32-S2 feather board we'll need to add data recording and a battery backup real time clock. Adafruit has one of these at
 https://www.adafruit.com/product/2922 that works nicely and can stack on the Reverse TFT Feather Board
 
-![NiftyCounter assembled](/assets/images/NiftyCounterBack.jpg)
+![NiftyCounter assembled](../assets/images/NiftyCounterBack.jpg)
 
 As I mentioned, the ESP32-S2 contains WiFi support, and the -S3 variant includes BLE as well. It would be possible to enable one of these and remote harvest
 counter data without touching a counter, but there's two big issues with this:
@@ -62,13 +62,13 @@ you're there it's so much easier to just swap the microSD card.
 
 ## Software Platform
 
-The TallyTrek software can be found in [TallyTrek.ino](TallyTrek.ino) in this folder. Open the TallyTrek folder in the Arduino IDE, select the
+The TallyTrek software can be found in [TallyTrek.ino](../TallyTrek/TallyTrek.ino) in the TallyTrek folder. Open the TallyTrek folder in the Arduino IDE, select the
 "Adafruit Feather ESP32-S2 Reverse TFT" board, and upload. It needs the Adafruit ST7735 and ST7789, Adafruit GFX, Adafruit MAX1704X and RTClib libraries.
 
 
 ## Sensor
 
-See [Sensor Overview](../SensorOverview.md) for more information on sensors.
+See [Sensor Overview](SensorOverview.md) for more information on sensors.
 
 I used RCWL-0516 microwave sensors when using this trail counter. These sensors can be powered directly from the board (using the GND and 3.3V pins 
 and the output logic signal can be tied to one of the input pins (I used DIO 12 in the software - see SENSOR_IN. Any other pin you choose has to be an
@@ -82,12 +82,12 @@ samples that I've used seem totally happy running with the nice, clean, regulate
 
 On startup, the display, clock, and SD card are initialized and readied. Users can follow along on the startup log
 
-![NiftyCounter assembled](/assets/images/NiftyCounterStartup.jpg)
+![NiftyCounter assembled](../assets/images/NiftyCounterStartup.jpg)
 
 After a moment or two, the normal main dashboard is displayed. This dashboard includes information about the current time, battery status, sensor status, and count
 values for the hour, day, and since last startup.
 
-![NiftyCounter assembled](/assets/images/NiftyCounterDisplay.jpg)
+![NiftyCounter assembled](../assets/images/NiftyCounterDisplay.jpg)
 
 The sensor status reads "Ready" when nothing is happening and "Sensor Active" in yellow while the sensor itself is detecting. When the sensor drops,
 the counter waits 10 seconds before recording the event and shows "Downtime" with a countdown in red. If the sensor fires again during the downtime,
@@ -99,7 +99,7 @@ reactivate the display again (D0 can't wake the board from sleep). Trail users w
 
 Pressing the middle (D1) button will display the options menu:
 
-![NiftyCounter assembled](/assets/images/NiftyCounterMenu.jpg)
+![NiftyCounter assembled](../assets/images/NiftyCounterMenu.jpg)
 
 These menu options can be used to select various features - disabling sensors, safely ejecting the microSD card, etc. D0 is the up button, D2 the down button, and D1
 selects/enters. 

@@ -46,10 +46,10 @@ losing it.
 |---|---|
 | [Adafruit ESP32-S2 Reverse TFT Feather](https://www.adafruit.com/product/5345) | Processor, 240x135 display, three buttons, LiPo charger, and battery monitor. The -S3 version works too |
 | [Adafruit Adalogger FeatherWing](https://www.adafruit.com/product/2922) | microSD card slot and battery-backed PCF8523 real-time clock. Stacks on the Feather |
-| RCWL-0516 microwave sensor | Sees through plastic and wood. See [Sensor Overview](./SensorOverview.md) |
+| RCWL-0516 microwave sensor | Sees through plastic and wood. See [Sensor Overview](./docs/SensorOverview.md) |
 | LiPo battery | Any 3.7V LiPo with a JST-PH connector |
 | microSD card | FAT formatted |
-| NiftyCase (optional) | 3D printed enclosure. See [Packaging Options](./PackagingOptions.md) |
+| NiftyCase (optional) | 3D printed enclosure. See [Packaging Options](./docs/PackagingOptions.md) |
 
 ### Wiring
 
@@ -159,10 +159,26 @@ To swap cards:
 
 | Document | Contents |
 |---|---|
-| [TallyTrek Guide](./TallyTrek/TallyTrek.md) | Full guide, including what changed from NiftyCounter |
-| [Sensor Overview](./SensorOverview.md) | The kinds of sensors used for trail counting |
-| [Packaging Options](./PackagingOptions.md) | The NiftyCase and other enclosures, and mounting the sensor |
-| [Helpful References](./HelpfulReferences.md) | Trail counting guides, videos, and commercial systems |
+| [TallyTrek Guide](./docs/TallyTrekGuide.md) | Full guide, including what changed from NiftyCounter |
+| [Sensor Overview](./docs/SensorOverview.md) | The kinds of sensors used for trail counting |
+| [Packaging Options](./docs/PackagingOptions.md) | The NiftyCase and other enclosures, and mounting the sensor |
+| [Helpful References](./docs/HelpfulReferences.md) | Trail counting guides, videos, and commercial systems |
+
+---
+
+## Repository Layout
+
+```
+tallytrek/
+├── TallyTrek/
+│   └── TallyTrek.ino        # firmware (Arduino sketch)
+├── docs/                    # guide and background docs
+├── assets/
+│   ├── images/              # photos used in the docs
+│   └── models/              # NiftyCase enclosure STLs
+├── LICENSE
+└── README.md
+```
 
 ---
 

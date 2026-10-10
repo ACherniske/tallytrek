@@ -11,17 +11,18 @@ Konkus for NiftyCounter, and the other options below come from his original trai
 
 The NiftyCase box holds a Feather stack, a sensor, and a battery in a case that can be screwed to a 4x4 post or a tree.
 
-![case](/assets/images/NiftyCaseClosed.jpg)
-![case](/assets/images/NiftyCaseTree.jpg)
+![case](../assets/images/NiftyCaseClosed.jpg)
+![case](../assets/images/NiftyCaseTree.jpg)
 
 Here it is open. This one holds the STHS34PF80 infrared sensor from an earlier NiftyCounter variant, mounted on the inside of the lid. TallyTrek's
 RCWL-0516 microwave sensor goes in the same spot.
 
-![case](/assets/images/NiftyCaseOpen.jpg)
+![case](../assets/images/NiftyCaseOpen.jpg)
 
 There's plenty of space reserved for larger batteries.
 
-The STL files are NiftyCaseBox.stl, NiftyCaseLid.stl, NiftyCaseLatch.stl (two required) and NiftyCaseTPUSeal.stl. Since these are exposed to the
+The STL files are in [assets/models](../assets/models): [NiftyCaseBox.stl](../assets/models/NiftyCaseBox.stl), [NiftyCaseLid.stl](../assets/models/NiftyCaseLid.stl),
+[NiftyCaseLatch.stl](../assets/models/NiftyCaseLatch.stl) (two required), and [NiftyCaseTPUSeal.stl](../assets/models/NiftyCaseTPUSeal.stl). Since these are exposed to the
 elements, print them in a material such as PETG or ABS for longevity. The NiftyCaseTPUSeal is an optional flexible gasket that helps make the box
 more weathertight, and should be printed in something like TPU.
 
@@ -44,7 +45,7 @@ more weathertight, and should be printed in something like TPU.
 The simplest option when deploying a trail counter is to tuck it in a ZipLoc bag. These are waterproof, low cost, and easy to fit into small, odd
 spaces. Bags are great for quickly deploying a prototype out on the trail.
 
-![ziploc](/assets/images/ziploc.jpg)
+![ziploc](../assets/images/ziploc.jpg)
 
 On the downside, they aren't particularly robust, are vulnerable to animals, and may be mistaken for rubbish. Some sensors are very sensitive to
 their surroundings and may be affected by where the batteries and boards end up, and that's hard to control in a bag.
@@ -53,19 +54,19 @@ their surroundings and may be affected by where the batteries and boards end up,
 
 Commercial ABS waterproof junction boxes are solid and robust and available in many sizes and formats. Here's one that's been used for a counter.
 
-![case](/assets/images/exposurecase.jpg)
+![case](../assets/images/exposurecase.jpg)
 
 This one is 6"x4"x3" and is available at https://www.amazon.com/Zulkit-Waterproof-Electrical-Transparent-150x100x70/dp/B07RPNWD47
 
 Being ABS, it's easy to use styrene solvent to glue plastic standoffs wherever needed to mount a circuit board.
 
-![case](/assets/images/exposurecasesensor.jpg)
-![case](/assets/images/exposurecaseclosed.jpg)
+![case](../assets/images/exposurecasesensor.jpg)
+![case](../assets/images/exposurecaseclosed.jpg)
 
 Microwave sensors like the RCWL-0516 can sense through wood, so a good placement is on a support beam under a bridge. Narrow bridges encourage users
 to pass single file and at relatively slow speeds, which helps keep counts accurate.
 
-![case](/assets/images/exposurecasebridge.jpg)
+![case](../assets/images/exposurecasebridge.jpg)
 
 ## Tagging
 

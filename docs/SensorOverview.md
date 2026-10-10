@@ -55,13 +55,13 @@ detect only a single user at a time.
 While there are many PIR sensors, this is a pretty convenient inexpensive package that is readily available. It includes a weatherproof IR transparent
 shield (that conveniently fits in a 7/8" hole cut in an enclosure) and has potentiometers to control sensitivity and retrigger delay times. It's power efficient, requiring only about 50 ua and happily runs on either 5v or 3.3v sources so it's easy to power.
 
-![sensor](/assets/images/HC-SR501.jpg)
+![sensor](../assets/images/HC-SR501.jpg)
 
 I've found that setting the jumper for repeat triggering, the sensitivity to minimum, and the time delay to a minimum value yields the best results. Even then, the minimum time delay value may be too long for fast traffic. Still investigating. 
 
 You can drill a 7.8 inch hole in a waterproof plastic enclosure so that the sensor lens is exposed to IR radiation while protecting the electronics and battery.
 
-![sensor](/assets/images/HC-SR501-settings.jpg)
+![sensor](../assets/images/HC-SR501-settings.jpg)
 
 HC-SR501 sensors are available here: https://www.amazon.com/DIYmall-HC-SR501-Motion-Infrared-Arduino/dp/B012ZZ4LPM and at many other sources.
  
@@ -74,7 +74,7 @@ such as bridges to detect footsteps.
 
 The LSM303AGR chip is a low power, high sensitivity accelerometer and magnetometer package that has been used in a number of trail counter packages. 
 
-![sensor](/assets/images/LSM303AGR.jpg)
+![sensor](../assets/images/LSM303AGR.jpg)
 
 These modules are available from a number of sources. I'm using the breakout board available at https://www.adafruit.com/product/4413
 
@@ -100,7 +100,7 @@ or located on the underside of a bridge plank and be complerely clandestine.
 This is a powerful yet inexpensive sensor, but a little hard to tune and senstive to surroundings. Tuning trigger and retrigger times means soldering SMD 
 components. Still, it's my go-to for a microwave sensor. It's power efficient, requiring only about 1.2 ma and happily runs on either 5v or 3.3v sources so it's easy to power up in the field with batteries or solar. The output signal can be used directly as a logic input to a trail counter. 
 
-![sensor](/assets/images/RCWL-0516.jpg)
+![sensor](../assets/images/RCWL-0516.jpg)
 
 These modules are available at https://www.amazon.com/gp/product/B07YYY7J7D
 
@@ -108,7 +108,7 @@ There's alot of tuning and usage information at https://github.com/jdesbonnet/RC
 
 By default, these sensors have about an active high trigger time of 2 seconds and a low retrigger time of 2 seconds between detection events. This isn't optimal for detecting individual riders in a group of mountain bikers, so I generally modify these boards to lessen that. 
 
-![sensor](/assets/images/RCWL-0516Mods.jpg)
+![sensor](../assets/images/RCWL-0516Mods.jpg)
 
 You can replace C2 (in red) with a smaller capacitor for a narrower trigger pulse time and you can replace C3 (in blue) with a smaller capacitor for a shorter retrigger time between pulses. Replacing both with .001 uf results in a minimum output pulse duration of about 300 ms and a minimum time between pulses of about 300 ms which works pretty well differentiating fast moving bike traffic.
 
@@ -118,7 +118,7 @@ This is a really nice, stable sensor package with easily adjustable range and tr
 input to a trail counter. The only downside to this package is that it's a bit of a power pig, requiring 30ma at 5 volts in operation. Given 
 that, it does work well as a detection sensor if you turn down the range and trigger time settings to their minimal values. This will result in a workable range of about 6 feet and about 2 seconds of high signal for each detection event. This is fine for hikers and relatively slow low volume bike traffic where users are 4 seconds apart, but may undercount if they are closer together than that.
 
-![sensor](/assets/images/HFS-DC06F.jpg)
+![sensor](../assets/images/HFS-DC06F.jpg)
 
 These modules are currently available at https://www.amazon.com/gp/product/B08TMQ36H6 or shop around.
 
